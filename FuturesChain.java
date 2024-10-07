@@ -1,15 +1,32 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class FuturesChain {
     private String contract;
     private String name;
     private String businessDate;
     private String location;
     private String marketTime;
-    private List<Map<String, Double>> dateMidRatePairs;  // Store pairs of date and midRate
+    private List<List<String>> dateMidRateDetails; // Holds [date, midRate]
 
-    // Constructors, getters, setters
-
+    // Constructors, getters, and setters
     public FuturesChain() {
-        this.dateMidRatePairs = new ArrayList<>();
+        this.dateMidRateDetails = new ArrayList<>();
+    }
+
+    public void addDateMidRateDetail(String date, Double midRate) {
+        List<String> entry = new ArrayList<>();
+        entry.add(date);
+        entry.add(midRate.toString());
+        this.dateMidRateDetails.add(entry);
+    }
+
+    public List<List<String>> getDateMidRateDetails() {
+        return dateMidRateDetails;
+    }
+
+    public void setDateMidRateDetails(List<List<String>> dateMidRateDetails) {
+        this.dateMidRateDetails = dateMidRateDetails;
     }
 
     public String getContract() {
@@ -50,19 +67,5 @@ public class FuturesChain {
 
     public void setMarketTime(String marketTime) {
         this.marketTime = marketTime;
-    }
-
-    public List<Map<String, Double>> getDateMidRatePairs() {
-        return dateMidRatePairs;
-    }
-
-    public void setDateMidRatePairs(List<Map<String, Double>> dateMidRatePairs) {
-        this.dateMidRatePairs = dateMidRatePairs;
-    }
-
-    public void addDateMidRatePair(String date, Double midRate) {
-        Map<String, Double> pair = new HashMap<>();
-        pair.put(date, midRate);
-        this.dateMidRatePairs.add(pair);
     }
 }

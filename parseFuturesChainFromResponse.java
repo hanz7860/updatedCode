@@ -32,7 +32,6 @@
 //     return futuresChain;
 // }
 
-
 private FuturesChain parseFuturesChainFromResponse(String response) {
     FuturesChain futuresChain = new FuturesChain();
 
@@ -58,10 +57,10 @@ private FuturesChain parseFuturesChainFromResponse(String response) {
                 Element quoteElement = (Element) quoteNodes.item(i);
 
                 String date = quoteElement.getAttribute("date");
-                Double midRate = Double.parseDouble(quoteElement.getAttribute("midRate"));
+                String midRate = quoteElement.getAttribute("midRate");
 
-                // Store date, midRate as key-value pairs
-                futuresChain.addDateMidRatePair(date, midRate);
+                // Add date and midRate to the FuturesChain
+                futuresChain.addDateMidRateDetail(date, Double.parseDouble(midRate));
             }
         }
 
